@@ -1,0 +1,88 @@
+<!DOCTYPE HTML>
+<html lang="uk" ng-app="myApp">
+<head>
+    <title>Flask-SocketIO Test</title>
+    <script type="text/javascript" src="/static/components/angular/angular.js"></script>
+    <script type="text/javascript" src="/static/components/angular-ui-router/release/angular-ui-router.js"></script>
+    <script type="text/javascript" src="/static/components/socket.io-client/dist/socket.io.js"></script>
+    <script type="text/javascript" src="/static/components/angular-socket-io/socket.js"></script>
+    <script type="text/javascript" src="/static/js/companies/controllers.js"></script>
+    <script type="text/javascript" src="/static/js/app.js"></script>
+    <link rel="stylesheet" href="/static/css/navbar-fixed-top.css">
+
+<!-- 
+        $(document).ready(function(){
+            namespace = '/test'; // change to an empty string to use the global namespace
+
+            // the socket.io documentation recommends sending an explicit package upon connection
+            // this is specially important when using the global namespace
+            var socket = io.connect('http://' + document.domain + ':' + location.port + namespace);
+            socket.on('connect', function() {
+                socket.emit('my event', {data: 'I\'m connected!'});
+            });
+
+            // event handler for server sent data
+            // the data is displayed in the "Received" section of the page
+            socket.on('my response', function(msg) {
+                $('#log').append('<br>Received #' + msg.count + ': ' + msg.data);
+            });
+
+            // handlers for the different forms in the page
+            // these send data to the server in a variety of ways
+            $('form#emit').submit(function(event) {
+                socket.emit('my event', {data: $('#emit_data').val()});
+                return false;
+            });
+            $('form#broadcast').submit(function(event) {
+                socket.emit('my broadcast event', {data: $('#broadcast_data').val()});
+                return false;
+            });
+            $('form#join').submit(function(event) {
+                socket.emit('join', {room: $('#join_room').val()});
+                return false;
+            });
+            $('form#leave').submit(function(event) {
+                socket.emit('leave', {room: $('#leave_room').val()});
+                return false;
+            });
+            $('form#send_room').submit(function(event) {
+                socket.emit('my room event', {room: $('#room_name').val(), data: $('#room_data').val()});
+                return false;
+            });
+        });
+    Optional theme -->
+</head>
+<body ng-controller="TTT">
+    <div class="navbar navbar-default navbar-fixed-top" role="navigation">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target=".navbar-collapse">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="#">PM</a>
+        </div>
+        <div class="navbar-collapse collapse">
+          <ul class="nav navbar-nav">
+            {% raw %}
+                <!-- <div ng-repeat='page in pages'>{{page.title}} : {{ page.date_modified.$date | date }}</div> -->
+                <li ng-repeat='company in companies'><a href="#/companies/{{ company.id }}">{{company.name}}</a></li>
+            {% endraw %}
+
+          </ul>
+        </div><!--/.nav-collapse -->
+      </div>
+    </div>
+<div ui-view class="container">
+
+
+    </div>
+<div class="container" id="log">
+  {% raw %}
+    <div ng-repeat='msg in msgs'>{{msg.count}} : {{ msg.data }}</div>
+  {% endraw %}
+</div>
+</body>
+</html>

@@ -18,6 +18,17 @@ setup(name='manager',
       include_package_data=True,
       zip_safe=False,
       install_requires=[
+            'Flask==0.10.1',
+            'Flask-SocketIO',
+            'Jinja2==2.7.2',
+            'MarkupSafe==0.18',
+            'Werkzeug==0.9.4',
+            'gevent==1.0',
+            'gevent-socketio==0.3.6',
+            'gevent-websocket==0.9.2',
+            'greenlet==0.4.2',
+            'itsdangerous==0.23',
+            'ujson==1.33',
           # -*- Extra requirements: -*-
       ],
       entry_points="""
